@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/taskzen/static/css/main.afd74b55.css",
+    "main.js": "/taskzen/static/js/main.35b73a1f.js",
+    "static/js/262.e2dd8fdf.chunk.js": "/taskzen/static/js/262.e2dd8fdf.chunk.js",
+    "static/media/logo.jpeg": "/taskzen/static/media/logo.f4ee3c390bb2d0c9b27c.jpeg",
+    "index.html": "/taskzen/index.html",
+    "main.afd74b55.css.map": "/taskzen/static/css/main.afd74b55.css.map",
+    "main.35b73a1f.js.map": "/taskzen/static/js/main.35b73a1f.js.map",
+    "262.e2dd8fdf.chunk.js.map": "/taskzen/static/js/262.e2dd8fdf.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.afd74b55.css",
+    "static/js/main.35b73a1f.js"
+  ]
+}
