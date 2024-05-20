@@ -1,10 +1,10 @@
-import AddTask from "./AddTask";
+import Tasks from "./Tasks";
 
 
 const Main = () => {
   return ( 
     <main className="container">
-      <AddTask />
+      <Tasks />
     </main>
   );
 }
