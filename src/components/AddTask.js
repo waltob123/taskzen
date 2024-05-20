@@ -1,19 +1,20 @@
+import { useState } from 'react';
+
 const AddTask = () => {
 
-  const tasksArray = [
-    'Go to the gym.', 'Make a sandwich.', 'Read a book.', 
-  ]
+  const [tasksArray, setTasks] = useState([
+    { id: 1, task: 'Go to the gym.' },
+    { id: 2, task: 'Buy groceries.' },
+    { id: 3, task: 'Clean the house.' }
+  ]);
 
   const handleAddTask = (e) => {
     const task = document.getElementById('task-input');
     if (task.value === '') {
       alert('Task cannot be empty');
     } else {
-      const taskList = document.querySelector('.task-list');
-      const newTask = document.createElement('li');
-      newTask.textContent = task.value;
-      newTask.classList.add('task-item');
-      taskList.appendChild(newTask);
+      const newTask = { id: tasksArray.length + 1, task: task.value };
+      setTasks([...tasksArray, newTask])
       task.value = '';
     }
   }
@@ -28,7 +29,7 @@ const AddTask = () => {
       <h2>Tasks</h2>
       <ul className="task-list">
           {tasksArray.map(
-          (task) => <li className="task-item">{task}</li>
+          (task) => <li className="task-item" key={task.id}>{task.task}</li>
         )}
       </ul>
     </section>    
