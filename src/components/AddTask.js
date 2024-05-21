@@ -4,7 +4,7 @@ const AddTask = ({ tasksArray, addNewTask }) => {
 
   const [taskInput, setTaskInput] = useState('');
 
-  const handleAddTask = (e) => {
+  const handleAddTask = () => {
     if (taskInput.trim() === '') {
       alert('Task cannot be empty');
     } else {
@@ -12,7 +12,6 @@ const AddTask = ({ tasksArray, addNewTask }) => {
       addNewTask(newTask);
       setTaskInput('');
     }
-    console.log(tasksArray);
   }
 
   return (
@@ -20,7 +19,7 @@ const AddTask = ({ tasksArray, addNewTask }) => {
     <section className="add-task">
         <input type="text" name="task" id="task-input" className="form-input"
         value={taskInput} onChange={(e) => setTaskInput(e.target.value)} />
-      <button className="btn btn-submit" onClick={(e) => handleAddTask(e)}>Add Task</button>
+        <button className="btn btn-submit" onClick={handleAddTask}>Add Task</button>
     </section>
     </>
   );

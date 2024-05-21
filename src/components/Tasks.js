@@ -1,17 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddTask from "./AddTask";
 import TaskLists from "./TasksList";
+import Loading from "./Loading";
 
 
 const Tasks = () => {
 
-  const tasks = [
-    { id: 1, task: 'Go to the gym.' },
-    { id: 2, task: 'Buy groceries.' },
-    { id: 3, task: 'Clean the house.' }
-  ];
+  const [tasksArray, setTasks] = useState(null);
+  const [isPending, setIsPending] = useState(true);
 
-   const [tasksArray, setTasks] = useState(tasks);
+  useEffect(() => {
+    setTimeout(() => {
+          fetch('http://localhost:8000/tasks')
+      .then((res) => res.json())
+      .then((data) => setTasks(data));
+      setIsPending(false);
+     }, 2000);
+  }, []);
 
   const addNewTask = (newTask) => {
     setTasks([...tasksArray, newTask]);
@@ -24,8 +29,9 @@ const Tasks = () => {
 
   return (
     <>
-      <AddTask tasksArray={tasks} addNewTask={addNewTask} />
-      <TaskLists tasks={tasksArray} deleteTask={deleteTask} />
+      <AddTask tasksArray={tasksArray} addNewTask={addNewTask} />
+      { isPending && <Loading />}
+      { tasksArray && <TaskLists tasks={tasksArray} deleteTask={deleteTask} /> }
     </>
   );
 }
