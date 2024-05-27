@@ -1,6 +1,7 @@
 import { Switch, Route } from "react-router-dom";
 import Tasks from "./Tasks";
 import About from "./About";
+import Task from "./Task";
 
 
 const Main = () => {
@@ -12,6 +13,9 @@ const Main = () => {
         </Route>
         <Route exact path='/about'>
           <About />
+        </Route>
+        <Route exact path='/task/:id'>
+          <Task />
         </Route>
       </Switch>
     </main>
