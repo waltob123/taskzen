@@ -1,4 +1,4 @@
-`:root {
+:root {
   font-size: 16px;
 }
 
@@ -185,6 +185,10 @@ section.add-task {
 .task-item:hover {
   background-color: #f7f7f7;
   cursor: pointer;
+}
+
+section.about {
+  margin-top: 100px;
 }
 
 .loading {

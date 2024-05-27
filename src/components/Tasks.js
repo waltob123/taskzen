@@ -1,37 +1,28 @@
-import { useState, useEffect } from "react";
 import AddTask from "./AddTask";
 import TaskLists from "./TasksList";
 import Loading from "./Loading";
-
+import useFetch from "../hooks/useFetch";
 
 const Tasks = () => {
 
-  const [tasksArray, setTasks] = useState(null);
-  const [isPending, setIsPending] = useState(true);
+  const { data, setData, isPending, error } = useFetch('http://localhost:8000/tasks')
 
-  useEffect(() => {
-    setTimeout(() => {
-          fetch('http://localhost:8000/tasks')
-      .then((res) => res.json())
-      .then((data) => setTasks(data));
-      setIsPending(false);
-     }, 2000);
-  }, []);
 
   const addNewTask = (newTask) => {
-    setTasks([...tasksArray, newTask]);
+    setData([...data, newTask]);
   }
 
   const deleteTask = (task) => {
-    const filteredTasks = tasksArray.filter((t) => t.id !== task.id);
-    setTasks(filteredTasks);
+    const filteredTasks = data.filter((t) => t.id !== task.id);
+    setData(filteredTasks);
   }
 
   return (
     <>
-      <AddTask tasksArray={tasksArray} addNewTask={addNewTask} />
+      <AddTask tasksArray={data} addNewTask={addNewTask} />
+      { error && <div>{ error }</div> }
       { isPending && <Loading />}
-      { tasksArray && <TaskLists tasks={tasksArray} deleteTask={deleteTask} /> }
+      { data && <TaskLists tasks={data} deleteTask={deleteTask} /> }
     </>
   );
 }
