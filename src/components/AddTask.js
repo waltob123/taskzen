@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const AddTask = ({ tasksArray, addNewTask }) => {
 
   const [taskInput, setTaskInput] = useState('');
+  const history = useHistory();
 
   const handleAddTask = (e) => {
     e.preventDefault();
@@ -16,9 +18,10 @@ const AddTask = ({ tasksArray, addNewTask }) => {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newTask)
-      }).then(() => {
+      }).then((res) => {
         // addNewTask(newTask);
         console.log('Added task successfully!');
+        history.push('/');
       })
       setTaskInput('');
     }
